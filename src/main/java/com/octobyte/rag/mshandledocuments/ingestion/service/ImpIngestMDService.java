@@ -9,9 +9,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("MDImplementation")
 public class ImpIngestMDService implements IngestService {
 
     private final MarkdownDocumentReaderConfig markdownDocumentReaderConfig;
@@ -22,8 +24,17 @@ public class ImpIngestMDService implements IngestService {
 
     @Override
     public List<Document> ingest() throws Exception {
-        Resource markDowns = new FileSystemResource(Constants.MARK_PATH);
-        return getResource(markDowns);
+        File Folder = new File(Constants.PDF_PATH);
+        File[] files = Folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".md"));
+        if (files == null || files.length == 0) {
+            return List.of();
+        }
+        List<Document> documents = new ArrayList<>();
+        for (File file : files) {
+            Resource resource = new FileSystemResource(file);
+            documents.addAll(getResource(resource));
+        }
+        return documents;
     }
 
     @Override

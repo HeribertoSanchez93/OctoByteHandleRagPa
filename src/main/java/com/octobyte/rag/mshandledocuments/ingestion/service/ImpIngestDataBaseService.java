@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Service("DBImplementation")
 public class ImpIngestDataBaseService implements IngestService {
 
     private final JdbcTemplate jdbcTemplate;

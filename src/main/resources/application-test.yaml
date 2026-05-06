@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     url: ${URL_POSTGRES}
-    username: ${PASSPOSGRES_PASSWORD}
+    username: ${PASSPOSGRES_USER}
     password: ${PASSPOSGRES_PASSWORD}
 
   ai:
