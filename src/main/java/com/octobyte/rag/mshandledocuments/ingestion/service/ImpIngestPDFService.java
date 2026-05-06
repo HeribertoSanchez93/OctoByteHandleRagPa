@@ -8,9 +8,11 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Service("PDFImplementation")
 public class ImpIngestPDFService implements IngestService{
 
     private final PdfDocumentReaderConfig config;
@@ -21,8 +23,17 @@ public class ImpIngestPDFService implements IngestService{
 
     @Override
     public List<Document> ingest() throws Exception {
-        Resource PDFs = new FileSystemResource(Constants.PDF_PATH);
-        return getResource(PDFs);
+        File Folder = new File(Constants.PDF_PATH);
+        File[] files = Folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".pdf"));
+        if (files == null || files.length == 0) {
+            return List.of();
+        }
+        List<Document> documents = new ArrayList<>();
+        for (File file : files) {
+            Resource resource = new FileSystemResource(file);
+            documents.addAll(getResource(resource));
+        }
+        return documents;
     }
 
     @Override

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: ${URL_POSTGRES}
+    username: ${PASSPOSGRES_PASSWORD}
+    password: ${PASSPOSGRES_PASSWORD}
+
+  ai:
+    openai:
+      base-url: https://api.venice.ai/api/v1
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        completions-path: /chat/completions
+        options.model: venice-uncensored
+
+      embeddings:
+        embeddings-path: /embeddings
+        options.model: text-embedding-bge-m3
+        api-key: ${OPENAI_API_KEY_EMBEDDINGS}
