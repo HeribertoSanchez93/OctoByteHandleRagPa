@@ -24,7 +24,7 @@ public class ImpIngestMDService implements IngestService {
 
     @Override
     public List<Document> ingest() throws Exception {
-        File Folder = new File(Constants.PDF_PATH);
+        File Folder = new File(Constants.MARK_PATH);
         File[] files = Folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".md"));
         if (files == null || files.length == 0) {
             return List.of();

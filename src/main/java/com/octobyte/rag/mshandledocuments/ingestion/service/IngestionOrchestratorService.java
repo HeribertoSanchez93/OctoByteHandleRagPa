@@ -20,7 +20,7 @@ public class IngestionOrchestratorService {
         SourceType sourceType = request.sourceType();
         String choose = switch (sourceType.toString().toLowerCase()) {
             case "pdf" -> "PDFImplementation";
-            case "wiki" -> "MDImplementation";
+            case "md" -> "MDImplementation";
             case "db" -> "DBImplementation";
             default -> sourceType.toString().toUpperCase();
         };
