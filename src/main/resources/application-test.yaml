@@ -1,10 +1,10 @@
 spring:
   datasource:
-    driver-class-name: org.postgresql.Driver
-    url: ${URL_POSTGRES}
-    username: ${PASSPOSGRES_USER}
-    password: ${PASSPOSGRES_PASSWORD}
-
+    relationaldatabase:
+      driver-class-name: org.postgresql.Driver
+      url: ${URL_POSTGRES}
+      username: ${PASSPOSGRES_USER}
+      password: ${PASSPOSGRES_PASSWORD}
   ai:
     openai:
       base-url: https://api.venice.ai/api/v1

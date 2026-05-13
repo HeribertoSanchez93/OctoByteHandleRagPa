@@ -1,6 +1,7 @@
 package com.octobyte.rag.mshandledocuments.ingestion.service;
 
 import org.springframework.ai.document.Document;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,11 @@ import java.util.Map;
 @Service("DBImplementation")
 public class ImpIngestDataBaseService implements IngestService {
 
+
+
     private final JdbcTemplate jdbcTemplate;
 
-    public ImpIngestDataBaseService(JdbcTemplate jdbcTemplate) {
+    public ImpIngestDataBaseService(@Qualifier("JdbcTemplateDBRelational") JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
